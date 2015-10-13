@@ -19,10 +19,7 @@
 		"nette/tester": "~1.0"
 	},
 	"autoload": {
-		"psr-0": {
-			"Aprila\\": "src/"
-		},
-		"classmap": ["src/exceptions.php"],
+		"classmap": ["src"],
         "files": ["src/Utils/shortcuts.php"]
 	},
 	"minimum-stability": "dev"
