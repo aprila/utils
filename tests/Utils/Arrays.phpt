@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Test: Aprila\Arrays
+ * Test: Aprila\Utils\Arrays
  */
 
 use Aprila\Utils\Arrays;
