@@ -2,12 +2,12 @@
 	"name": "aprila/utils",
 	"description": "Aprila Utility Classes",
 	"keywords": ["utils", "array", "nette", "aprila"],
-	"homepage": "http://aprila.cz",
+	"homepage": "https://www.aprilaexperiment.com",
 	"license": ["MIT"],
 	"authors": [
 		{
 			"name": "Honza Cerny",
-			"homepage": "http://honzacerny.com"
+			"homepage": "https://honzacerny.com"
 		}
 	],
 	"require": {
