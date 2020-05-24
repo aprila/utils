@@ -19,8 +19,7 @@
 		"nette/tester": "~1.0"
 	},
 	"autoload": {
-		"classmap": ["src"],
-        "files": ["src/Utils/shortcuts.php"]
+		"classmap": ["src"]
 	},
 	"minimum-stability": "dev"
 }
