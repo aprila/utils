@@ -20,7 +20,6 @@ class Colors
 		if (is_string($rgb)) {
 			$rgbString = $rgb;
 
-			// TODO : use regex
 			$rgbString = str_replace(' ','', $rgbString);
 			$rgbString = str_replace('rgb','', $rgbString);
 			$rgbString = str_replace('(','', $rgbString);
