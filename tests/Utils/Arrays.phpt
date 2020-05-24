@@ -12,12 +12,12 @@ require __DIR__ . '/../bootstrap.php';
 
 
 $testArray = [
-	2 => 'jahoda',
-	3 => 'meloun',
-	4 => 'banan',
-	10 => 'mrkev',
-	'x' => 'porek',
-	'y' => 'malina'
+	2 => 'strawberry',
+	3 => 'watermelon',
+	4 => 'banana',
+	10 => 'carrot',
+	'x' => 'leek',
+	'y' => 'raspberry'
 ];
 
 Assert::count(6, $testArray);
@@ -33,14 +33,14 @@ Assert::same(10, Arrays::getNextKey($testArray, 4));
 Assert::same(2, Arrays::getNextKey($testArray, 'y'));
 
 // previous value
-Assert::same('jahoda', Arrays::getPreviousValue($testArray, 'meloun'));
-Assert::same('mrkev', Arrays::getPreviousValue($testArray, 'porek'));
-Assert::same('malina', Arrays::getPreviousValue($testArray, 'jahoda'));
+Assert::same('strawberry', Arrays::getPreviousValue($testArray, 'watermelon'));
+Assert::same('carrot', Arrays::getPreviousValue($testArray, 'leek'));
+Assert::same('raspberry', Arrays::getPreviousValue($testArray, 'strawberry'));
 
 // next value
-Assert::same('mrkev', Arrays::getNextValue($testArray, 'banan'));
-Assert::same('porek', Arrays::getNextValue($testArray, 'mrkev'));
-Assert::same('jahoda', Arrays::getNextValue($testArray, 'malina'));
+Assert::same('carrot', Arrays::getNextValue($testArray, 'banana'));
+Assert::same('leek', Arrays::getNextValue($testArray, 'carrot'));
+Assert::same('strawberry', Arrays::getNextValue($testArray, 'raspberry'));
 
 $testNestedArray = [
 	2 => ['x','1'],
