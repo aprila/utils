@@ -1,8 +1,8 @@
 {
 	"name": "aprila/utils",
-	"description": "Aprila Utility Classes",
-	"keywords": ["utils", "array", "nette", "aprila"],
-	"homepage": "https://www.aprilaexperiment.com",
+	"description": "Aprila Toolkit - Utility Classes",
+	"keywords": ["utils", "array", "aprila"],
+	"homepage": "https://www.aprila.cz/open-source",
 	"license": ["MIT"],
 	"authors": [
 		{
