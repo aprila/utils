@@ -5,7 +5,7 @@
 
 namespace Aprila\Utils;
 
-use Nette\InvalidArgumentException;
+use InvalidArgumentException;
 
 class Colors
 {

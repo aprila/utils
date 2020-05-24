@@ -5,16 +5,14 @@
 
 namespace Aprila\Utils;
 
-use Nette;
+use LogicException;
 
 class Arrays
 {
-	/**
-	 * Static class - cannot be instantiated.
-	 */
+
 	final public function __construct()
 	{
-		throw new Nette\StaticClassException;
+		throw new LogicException("Static class - cannot be instantiated");
 	}
 
 	/**

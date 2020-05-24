@@ -22,7 +22,7 @@ Assert::same('#FF0000', Colors::rgbToHex(['r'=>'255', 'g'=>'0', 'b'=>'0']));
 
 Assert::exception(function(){
 	Colors::rgbToHex(['255', '0']);
-}, 'Nette\InvalidArgumentException');
+}, 'InvalidArgumentException');
 
 // From string
 
@@ -31,4 +31,4 @@ Assert::same('#FFFF00', Colors::rgbToHex('255, 255, 0'));
 
 Assert::exception(function(){
 	Colors::rgbToHex('255, 0');
-}, 'Nette\InvalidArgumentException');
+}, 'InvalidArgumentException');
