@@ -14,10 +14,16 @@
 		"php": ">=7.1.0"
 	},
 	"require-dev": {
-		"nette/tester": "~2.3"
+		"nette/tester": "~2.3",
+		"ninjify/qa": "*"
 	},
 	"autoload": {
 		"classmap": ["src"]
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "stable",
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }
