@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Honza Cerny (http://honzacerny.com)
  */
@@ -9,7 +10,6 @@ use LogicException;
 
 class Arrays
 {
-
     final public function __construct()
     {
         throw new LogicException("Static class - cannot be instantiated");
@@ -108,5 +108,4 @@ class Arrays
 
         return $prev;
     }
-
 }

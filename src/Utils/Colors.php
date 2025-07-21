@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Honza Cerny (http://honzacerny.com)
  */
@@ -15,7 +16,7 @@ class Colors
      *
      * @return string
      */
-    public static function rgbToHex($rgb, $withHash = TRUE)
+    public static function rgbToHex($rgb, $withHash = true)
     {
         if (is_string($rgb)) {
             $rgbString = $rgb;
@@ -54,7 +55,6 @@ class Colors
 
         if ($withHash) {
             return strtoupper('#' . sprintf("%02s%02s%02s", $hex[0], $hex[1], $hex[2]));
-
         } else {
             return strtoupper(sprintf("%02s%02s%02s", $hex[0], $hex[1], $hex[2]));
         }
