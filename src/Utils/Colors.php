@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * @author Honza Cerny (http://honzacerny.com)
  */
@@ -11,24 +14,18 @@ class Colors
 {
     /**
      * @param array|string $rgb
-     * @param bool|TRUE $withHash
+     * @param bool $withHash
      *
      * @return string
      */
-    public static function rgbToHex($rgb, $withHash = TRUE)
+    public static function rgbToHex(array|string $rgb, bool $withHash = true): string
     {
         if (is_string($rgb)) {
-            $rgbString = $rgb;
-
-            $rgbString = str_replace(' ', '', $rgbString);
-            $rgbString = str_replace('rgb', '', $rgbString);
-            $rgbString = str_replace('(', '', $rgbString);
-            $rgbString = str_replace(')', '', $rgbString);
-
-            if (strpos($rgbString, ',') !== 0) {
-                $rgb = explode(',', $rgbString);
+            // Use regex to extract RGB values from string formats like "rgb(255, 0, 0)" or "255, 255, 0"
+            if (preg_match('/^(?:rgb\s*\()?\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)?$/', $rgb, $matches)) {
+                $rgb = [$matches[1], $matches[2], $matches[3]];
             } else {
-                throw new InvalidArgumentException('Param was not an RGB in string');
+                throw new InvalidArgumentException('Invalid RGB string format. Expected "rgb(r, g, b)" or "r, g, b"');
             }
         }
 
@@ -46,6 +43,14 @@ class Colors
             throw new InvalidArgumentException('Param was not an RGB array or string');
         }
 
+        // Validate RGB values are within 0-255 range
+        for ($i = 0; $i < 3; $i++) {
+            $value = (int) $rgb[$i];
+            if ($value < 0 || $value > 255) {
+                throw new InvalidArgumentException("RGB value {$value} is out of range (0-255)");
+            }
+            $rgb[$i] = $value;
+        }
 
         // Convert RGB to HEX
         $hex[0] = dechex($rgb[0]);

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * @author Honza Cerny (http://honzacerny.com)
  */
@@ -16,11 +19,11 @@ class Arrays
     }
 
     /**
-     * @param $array
-     * @param $curr_key
-     * @return mixed
+     * @param array $array
+     * @param string|int $curr_key
+     * @return string|int|null
      */
-    public static function getNextKey(&$array, $curr_key)
+    public static function getNextKey(array &$array, string|int $curr_key): string|int|null
     {
         reset($array);
         $next = key($array);
@@ -39,11 +42,11 @@ class Arrays
 
 
     /**
-     * @param $array
-     * @param $curr_key
-     * @return mixed
+     * @param array $array
+     * @param string|int $curr_key
+     * @return string|int|null
      */
-    public static function getPreviousKey(&$array, $curr_key)
+    public static function getPreviousKey(array &$array, string|int $curr_key): string|int|null
     {
         end($array);
         $prev = key($array);
@@ -62,11 +65,11 @@ class Arrays
 
 
     /**
-     * @param $array
-     * @param $curr_val
+     * @param array $array
+     * @param mixed $curr_val
      * @return mixed
      */
-    public static function getNextValue(&$array, $curr_val)
+    public static function getNextValue(array &$array, mixed $curr_val): mixed
     {
         reset($array);
 
@@ -88,11 +91,11 @@ class Arrays
 
 
     /**
-     * @param $array
-     * @param $curr_val
+     * @param array $array
+     * @param mixed $curr_val
      * @return mixed
      */
-    public static function getPreviousValue(&$array, $curr_val)
+    public static function getPreviousValue(array &$array, mixed $curr_val): mixed
     {
         end($array);
         $prev = current($array);
