@@ -23,21 +23,20 @@ class Arrays
      * @param string|int $curr_key
      * @return string|int|null
      */
-    public static function getNextKey(array &$array, string|int $curr_key): string|int|null
+    public static function getNextKey(array $array, string|int $curr_key): string|int|null
     {
-        reset($array);
-        $next = key($array);
+        $keys = array_keys($array);
+        $position = array_search($curr_key, $keys); // Loose comparison to match original behavior
 
-        do {
-            $tmp_key = key($array);
-            $res = next($array);
-        } while (($tmp_key != $curr_key) && $res);
-
-        if ($res) {
-            $next = key($array);
+        if ($position === false) {
+            return $keys[0] ?? null;
         }
 
-        return $next;
+        if (isset($keys[$position + 1])) {
+            return $keys[$position + 1];
+        }
+
+        return $keys[0] ?? null;
     }
 
 
@@ -46,21 +45,20 @@ class Arrays
      * @param string|int $curr_key
      * @return string|int|null
      */
-    public static function getPreviousKey(array &$array, string|int $curr_key): string|int|null
+    public static function getPreviousKey(array $array, string|int $curr_key): string|int|null
     {
-        end($array);
-        $prev = key($array);
+        $keys = array_keys($array);
+        $position = array_search($curr_key, $keys);
 
-        do {
-            $tmp_key = key($array);
-            $res = prev($array);
-        } while (($tmp_key != $curr_key) && $res);
-
-        if ($res) {
-            $prev = key($array);
+        if ($position === false) {
+            return $keys[count($keys) - 1] ?? null;
         }
 
-        return $prev;
+        if (isset($keys[$position - 1])) {
+            return $keys[$position - 1];
+        }
+
+        return $keys[count($keys) - 1] ?? null;
     }
 
 
@@ -69,24 +67,20 @@ class Arrays
      * @param mixed $curr_val
      * @return mixed
      */
-    public static function getNextValue(array &$array, mixed $curr_val): mixed
+    public static function getNextValue(array $array, mixed $curr_val): mixed
     {
-        reset($array);
+        $values = array_values($array);
+        $position = array_search($curr_val, $values);
 
-        do {
-            $tmp_val = current($array);
-            $res = next($array);
-        } while (($tmp_val != $curr_val) && $res);
-
-        if ($res) {
-            $next = current($array);
-        } else {
-            // return first value
-            reset($array);
-            $next = current($array);
+        if ($position === false) {
+            return $values[0] ?? null;
         }
 
-        return $next;
+        if (isset($values[$position + 1])) {
+            return $values[$position + 1];
+        }
+
+        return $values[0] ?? null;
     }
 
 
@@ -95,21 +89,20 @@ class Arrays
      * @param mixed $curr_val
      * @return mixed
      */
-    public static function getPreviousValue(array &$array, mixed $curr_val): mixed
+    public static function getPreviousValue(array $array, mixed $curr_val): mixed
     {
-        end($array);
-        $prev = current($array);
+        $values = array_values($array);
+        $position = array_search($curr_val, $values);
 
-        do {
-            $tmp_val = current($array);
-            $res = prev($array);
-        } while (($tmp_val != $curr_val) && $res);
-
-        if ($res) {
-            $prev = current($array);
+        if ($position === false) {
+            return $values[count($values) - 1] ?? null;
         }
 
-        return $prev;
+        if (isset($values[$position - 1])) {
+            return $values[$position - 1];
+        }
+
+        return $values[count($values) - 1] ?? null;
     }
 
 }

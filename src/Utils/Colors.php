@@ -53,15 +53,35 @@ class Colors
         }
 
         // Convert RGB to HEX
-        $hex[0] = dechex($rgb[0]);
-        $hex[1] = dechex($rgb[1]);
-        $hex[2] = dechex($rgb[2]);
+        $hex = sprintf("%02x%02x%02x", $rgb[0], $rgb[1], $rgb[2]);
 
         if ($withHash) {
-            return strtoupper('#' . sprintf("%02s%02s%02s", $hex[0], $hex[1], $hex[2]));
-
-        } else {
-            return strtoupper(sprintf("%02s%02s%02s", $hex[0], $hex[1], $hex[2]));
+            return strtoupper('#' . $hex);
         }
+
+        return strtoupper($hex);
+    }
+
+    /**
+     * @param string $hex
+     * @return array
+     */
+    public static function hexToRgb(string $hex): array
+    {
+        $hex = ltrim($hex, '#');
+
+        if (strlen($hex) === 3) {
+            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+        }
+
+        if (strlen($hex) !== 6 || !ctype_xdigit($hex)) {
+            throw new InvalidArgumentException("Invalid HEX color");
+        }
+
+        return [
+            'r' => hexdec(substr($hex, 0, 2)),
+            'g' => hexdec(substr($hex, 2, 2)),
+            'b' => hexdec(substr($hex, 4, 2)),
+        ];
     }
 }
