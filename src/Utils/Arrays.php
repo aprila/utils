@@ -26,7 +26,7 @@ class Arrays
     public static function getNextKey(array $array, string|int $curr_key): string|int|null
     {
         $keys = array_keys($array);
-        $position = array_search($curr_key, $keys); // Loose comparison to match original behavior
+        $position = array_search($curr_key, $keys, true);
 
         if ($position === false) {
             return $keys[0] ?? null;
@@ -48,7 +48,7 @@ class Arrays
     public static function getPreviousKey(array $array, string|int $curr_key): string|int|null
     {
         $keys = array_keys($array);
-        $position = array_search($curr_key, $keys);
+        $position = array_search($curr_key, $keys, true);
 
         if ($position === false) {
             return $keys[count($keys) - 1] ?? null;
@@ -70,7 +70,7 @@ class Arrays
     public static function getNextValue(array $array, mixed $curr_val): mixed
     {
         $values = array_values($array);
-        $position = array_search($curr_val, $values);
+        $position = array_search($curr_val, $values, true);
 
         if ($position === false) {
             return $values[0] ?? null;
@@ -92,7 +92,7 @@ class Arrays
     public static function getPreviousValue(array $array, mixed $curr_val): mixed
     {
         $values = array_values($array);
-        $position = array_search($curr_val, $values);
+        $position = array_search($curr_val, $values, true);
 
         if ($position === false) {
             return $values[count($values) - 1] ?? null;

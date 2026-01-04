@@ -68,9 +68,8 @@ class ArraysTest extends TestCase
         Assert::same(10, Arrays::getNextKey($arr, 20));
         Assert::same(10, Arrays::getNextKey($arr, 999));
 
-        // Loose comparison check
-        // "10" matches 10
-        Assert::same(20, Arrays::getNextKey($arr, "10"));
+        // Strict comparison: "10" !== 10, so key not found, returns first key
+        Assert::same(10, Arrays::getNextKey($arr, "10"));
     }
 }
 

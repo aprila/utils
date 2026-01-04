@@ -67,8 +67,8 @@ Assert::same(['d', '5'], Arrays::getPreviousValue($testNestedArray, ['f', '7']))
 $emptyArray = [];
 Assert::null(Arrays::getNextKey($emptyArray, 'nonexistent'));
 Assert::null(Arrays::getPreviousKey($emptyArray, 'nonexistent'));
-Assert::same(false, Arrays::getNextValue($emptyArray, 'nonexistent')); // returns false for empty array (current() behavior)
-Assert::same(false, Arrays::getPreviousValue($emptyArray, 'nonexistent'));
+Assert::null(Arrays::getNextValue($emptyArray, 'nonexistent')); // returns null for empty array
+Assert::null(Arrays::getPreviousValue($emptyArray, 'nonexistent')); // returns null for empty array
 
 // Single element array
 $singleArray = ['only' => 'value'];
@@ -96,12 +96,11 @@ Assert::same('b', Arrays::getNextKey($nullArray, 'a'));
 Assert::same('value', Arrays::getNextValue($nullArray, null)); // finds first null, returns next value
 Assert::same(null, Arrays::getPreviousValue($nullArray, 'value')); // returns previous null
 
-// Test with boolean and numeric values 
-// Note: Method has a bug - it treats falsy next() results as "end of array" and wraps around
+// Test with boolean and numeric values (strict comparison)
 $mixedValues = [true, false, 0, 1, '', 'string'];
-Assert::same(true, Arrays::getNextValue($mixedValues, true)); // finds true, next() returns false (falsy), wraps to first
-Assert::same(true, Arrays::getNextValue($mixedValues, false)); // finds false, next() returns 0 (falsy), wraps to first  
-Assert::same(true, Arrays::getNextValue($mixedValues, 0)); // finds 0, next() returns 1 (truthy), but then 1 != 0 fails next iteration
-Assert::same(true, Arrays::getNextValue($mixedValues, 1)); // similar issue with truthy/falsy logic
-Assert::same(true, Arrays::getNextValue($mixedValues, '')); // empty string causes similar issue
-Assert::same(true, Arrays::getNextValue($mixedValues, 'string')); // wraps around
+Assert::same(false, Arrays::getNextValue($mixedValues, true)); // finds true at 0, returns false at 1
+Assert::same(0, Arrays::getNextValue($mixedValues, false)); // finds false at 1, returns 0 at 2
+Assert::same(1, Arrays::getNextValue($mixedValues, 0)); // finds 0 at 2, returns 1 at 3
+Assert::same('', Arrays::getNextValue($mixedValues, 1)); // finds 1 at 3, returns '' at 4
+Assert::same('string', Arrays::getNextValue($mixedValues, '')); // finds '' at 4, returns 'string' at 5
+Assert::same(true, Arrays::getNextValue($mixedValues, 'string')); // finds 'string' at 5, wraps to true at 0
